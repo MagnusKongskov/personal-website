@@ -30,18 +30,18 @@ export default function Footer() {
               href="mailto:Primary@magnuskongskov.dk"
               className="transition-colors hover:text-foreground"
             >
-              Primary@magnuskongskov.dk
+              primary@magnuskongskov.dk
             </a>
           </p>
           <p>
             Phone: <PhoneNumberModal />
           </p>
-          <p>Adress: Teglværksgade 17. 2. tv. 8000 Aarhus C</p>
+          <p>Address: Teglværksgade 17. 2. tv. 8000 Aarhus C</p>
         </div>
 
         <div className="order-3 flex justify-center sm:order-2 sm:justify-center">
           <a
-            href="https://x.com/MagnusKongskov"
+            href={`${X_PROFILE_URL}MagnusKongskov`}
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted transition-colors hover:text-foreground"
@@ -54,7 +54,7 @@ export default function Footer() {
         <div className="order-2 text-sm sm:order-3 sm:text-right">
           <Link
             href="/tp"
-            className="text-muted transition-colors hover:text-foreground"
+            className="text-muted underline transition-colors hover:text-foreground"
           >
             Terms &amp; Privacy
           </Link>

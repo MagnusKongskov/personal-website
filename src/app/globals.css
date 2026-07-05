@@ -1,10 +1,19 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Tiempos Text";
+  src: url("/fonts/TiemposText-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #fafafa;
   --foreground: #171717;
   --muted: #737373;
-  --accent: #2563eb;
+  --secondary: #0251dd;
+  --accent: var(--secondary);
   --border: #e5e5e5;
 }
 
@@ -12,15 +21,16 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
+  --color-secondary: var(--secondary);
   --color-accent: var(--accent);
   --color-border: var(--border);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: "Tiempos Text", Georgia, "Times New Roman", serif;
+  --font-mono: "Tiempos Text", Georgia, "Times New Roman", serif;
   --max-width-content: 920px;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-sans);
 }

@@ -256,7 +256,7 @@ export default function TermsAndPrivacy() {
               <p>We process the following personal data:</p>
               <BulletList
                 items={[
-                  "Contact information — Name, Mail, Phone Number, Billing Adress",
+                  "Contact information — Name, Mail, Phone Number, Billing Address",
                   "Company Information — Company Webpage",
                   "Transaction Data (processed via secure third-party providers) — Purchase history, Payment details",
                 ]}

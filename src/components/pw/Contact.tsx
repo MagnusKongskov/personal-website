@@ -6,9 +6,10 @@ import Link from "next/link";
 import Container from "@/components/Container";
 import GetContactedButton from "@/components/GetContactedButton";
 import FeedbackBubble from "@/components/FeedbackBubble";
+import { color2 } from "@/components/pw/colors";
 
 const inputClassName =
-  "mt-1.5 w-full rounded-lg border border-border bg-background px-4 py-3 text-sm outline-none transition-colors focus:border-accent";
+  "mt-1.5 w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-sm text-white outline-none transition-colors placeholder:text-white/40 focus:border-[#f97316]";
 
 function isValidEmail(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
@@ -44,7 +45,10 @@ function FormField({
 
   return (
     <div>
-      <label htmlFor={id} className="block pl-1 text-sm font-medium">
+      <label
+        htmlFor={id}
+        className="block pl-1 text-sm font-medium text-white/90"
+      >
         {label}
       </label>
       {rows ? (
@@ -56,7 +60,13 @@ function FormField({
   );
 }
 
-export default function Contact() {
+export default function Contact({
+  title = "Still in doubt?",
+  description = "If you unsure whether a personal website is for you, i will happily answer your questions.",
+}: {
+  title?: string;
+  description?: string;
+} = {}) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
@@ -103,7 +113,7 @@ export default function Contact() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          type: "main",
+          type: "personal",
           name,
           email,
           company,
@@ -129,31 +139,30 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-5">
+    <section id="contact" className="py-6 sm:py-8">
       <Container>
         <h2 className="text-center text-3xl font-bold tracking-tight sm:text-4xl">
-          Get in touch
+          {title}
         </h2>
-        <p className="mt-4 text-center text-muted">
-          Have a question or want to learn more? Fill out the form below and I
-          will get back to you.
+        <p className="mx-auto mt-4 max-w-xl text-center text-white/70">
+          {description}
         </p>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-[3fr_1fr] lg:gap-8">
           <form
-            className="space-y-4 rounded-2xl bg-foreground/[0.03] p-4 sm:p-5"
+            className="space-y-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4 sm:p-5"
             onSubmit={(event) => event.preventDefault()}
           >
             <div className="grid gap-3 sm:grid-cols-2">
               <FormField
-                id="name"
+                id="pw-name"
                 label="Name"
                 placeholder="Name"
                 value={name}
                 onChange={setName}
               />
               <FormField
-                id="email"
+                id="pw-email"
                 label="Email Address"
                 type="email"
                 placeholder="you@example.com"
@@ -162,7 +171,7 @@ export default function Contact() {
               />
               <div className="hidden sm:block">
                 <FormField
-                  id="company"
+                  id="pw-company"
                   label="Company Name"
                   placeholder="Company name"
                   value={company}
@@ -171,7 +180,7 @@ export default function Contact() {
               </div>
               <div className="hidden sm:block">
                 <FormField
-                  id="phone"
+                  id="pw-phone"
                   label="Phone Number"
                   type="tel"
                   placeholder="Phone number (optional)"
@@ -182,7 +191,7 @@ export default function Contact() {
             </div>
 
             <FormField
-              id="message"
+              id="pw-message"
               label="Message"
               placeholder="Optional message"
               rows={5}
@@ -191,22 +200,25 @@ export default function Contact() {
             />
 
             <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
-              <div className="flex min-w-0 flex-1 items-center gap-2 text-xs">
+              <div className="flex min-w-0 flex-1 items-center gap-2 text-xs text-white/70">
                 <input
-                  id="terms-agreement"
+                  id="pw-terms-agreement"
                   type="checkbox"
                   name="terms"
                   checked={agreedToTerms}
                   onChange={(event) => setAgreedToTerms(event.target.checked)}
-                  className="h-3.5 w-3.5 shrink-0 rounded border-border accent-foreground"
+                  className="h-3.5 w-3.5 shrink-0 rounded border-white/30 accent-[#f97316]"
                 />
                 <p className="min-w-0">
-                  <label htmlFor="terms-agreement" className="cursor-pointer">
+                  <label
+                    htmlFor="pw-terms-agreement"
+                    className="cursor-pointer"
+                  >
                     By submitting my information i agree to the{" "}
                   </label>
                   <Link
                     href="/tp"
-                    className="text-foreground underline transition-colors hover:opacity-80"
+                    className="text-white underline transition-colors hover:opacity-80"
                   >
                     terms &amp; privacy
                   </Link>
@@ -217,6 +229,7 @@ export default function Contact() {
                 {error ? (
                   <FeedbackBubble
                     message={error}
+                    theme="dark"
                     onDismiss={handleErrorDismiss}
                   />
                 ) : null}
@@ -224,21 +237,28 @@ export default function Contact() {
                   <FeedbackBubble
                     message="Message sent. I will get back to you as soon as possible."
                     variant="success"
+                    theme="dark"
                     onDismiss={handleSuccessDismiss}
                   />
                 ) : null}
                 <GetContactedButton
                   onClick={handleGetContacted}
                   isLoading={isSubmitting}
-                  className="border-transparent bg-secondary text-background hover:bg-secondary hover:opacity-90"
+                  className="border-transparent bg-[#f97316] text-white hover:bg-[#f97316] hover:opacity-90"
                 />
               </div>
             </div>
           </form>
 
           <aside className="hidden flex-col lg:flex">
-            <div className="flex w-full flex-col items-center overflow-hidden rounded-2xl border-2 border-secondary bg-background p-4 text-center sm:p-5">
-              <div className="relative aspect-square w-48 overflow-hidden rounded-full border-2 border-secondary sm:w-56">
+            <div
+              className="flex w-full flex-col items-center overflow-hidden rounded-2xl border-2 bg-white/[0.04] p-4 text-center sm:p-5"
+              style={{ borderColor: color2 }}
+            >
+              <div
+                className="relative aspect-square w-48 overflow-hidden rounded-full border-2 sm:w-56"
+                style={{ borderColor: color2 }}
+              >
                 <Image
                   src="/profpic.png"
                   alt="Magnus Kongskov"
@@ -249,12 +269,12 @@ export default function Contact() {
               </div>
               <div className="mt-6">
                 <p className="text-lg font-semibold">Magnus Kongskov</p>
-                <p className="mt-1 text-sm text-muted">
+                <p className="mt-1 text-sm text-white/60">
                   Freelance Web Designer
                   <br />
                   <a
                     href="mailto:primary@magnuskongskov.dk"
-                    className="text-foreground underline transition-colors hover:opacity-80"
+                    className="text-white underline transition-colors hover:opacity-80"
                   >
                     primary@magnuskongskov.dk
                   </a>

@@ -9,7 +9,7 @@ export default function Header() {
         className="flex items-center gap-0 rounded-full border border-border bg-white px-5 py-2.5 shadow-md transition-opacity hover:opacity-90"
       >
         <Image
-          src="/cl.png"
+          src="/logo.png"
           alt="Kongskov Web Services logo"
           width={32}
           height={32}
