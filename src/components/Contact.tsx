@@ -232,7 +232,7 @@ export default function Contact() {
 
             {success ? (
               <p className="text-sm text-green-600" role="status">
-                Your message has been sent. I&apos;ll get back to you soon.
+                Message sent. I will get back to you as soon as possible.
               </p>
             ) : null}
 
