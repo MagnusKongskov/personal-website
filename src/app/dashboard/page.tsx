@@ -18,9 +18,6 @@ export default async function DashboardPage() {
       <section className="py-12 sm:py-16">
         <Container className="text-center">
           <DashboardGreeting name={greetingName} />
-          <h2 className="mt-4 text-base font-medium text-white/70 sm:text-lg">
-            Check the progress of getting your website ready.
-          </h2>
         </Container>
       </section>
 

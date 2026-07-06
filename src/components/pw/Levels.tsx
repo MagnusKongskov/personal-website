@@ -78,19 +78,31 @@ export default function Levels() {
             return (
               <div key={level.id}>
                 <div
-                  className="mb-1 w-full max-w-md sm:mb-2"
+                  className="mb-1 w-full max-w-md max-sm:ml-0! sm:mb-2"
                   style={{ marginLeft: `${level.shift ?? 0}%` }}
                 >
                   <LevelBox level={level} />
                 </div>
 
                 {index < MARKETING_LEVELS.length - 1 ? (
-                  <LevelConnector
-                    fromAnchor={level.anchor ?? 50}
-                    toAnchor={MARKETING_LEVELS[index + 1].anchor ?? 50}
-                    fromColor={groupColor}
-                    toColor={getLevelColor(MARKETING_LEVELS[index + 1].id)}
-                  />
+                  <>
+                    <div className="sm:hidden">
+                      <LevelConnector
+                        fromAnchor={50}
+                        toAnchor={50}
+                        fromColor={groupColor}
+                        toColor={getLevelColor(MARKETING_LEVELS[index + 1].id)}
+                      />
+                    </div>
+                    <div className="hidden sm:block">
+                      <LevelConnector
+                        fromAnchor={level.anchor ?? 50}
+                        toAnchor={MARKETING_LEVELS[index + 1].anchor ?? 50}
+                        fromColor={groupColor}
+                        toColor={getLevelColor(MARKETING_LEVELS[index + 1].id)}
+                      />
+                    </div>
+                  </>
                 ) : null}
               </div>
             );

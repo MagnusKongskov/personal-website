@@ -1,10 +1,25 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Container from "@/components/Container";
 
-const slides = [
-  { id: 1, caption: "Project One", placeholderClass: "bg-foreground/10" },
+type GallerySlide = {
+  id: number;
+  caption: string;
+  placeholderClass: string;
+  src?: string;
+  alt?: string;
+};
+
+const slides: GallerySlide[] = [
+  {
+    id: 1,
+    caption: "Jordan Steel — Personal Trainer",
+    src: "/lp-gallery-1.png",
+    alt: "Jordan Steel personal trainer demo website with bold hero section",
+    placeholderClass: "bg-foreground/10",
+  },
   { id: 2, caption: "Project Two", placeholderClass: "bg-foreground/15" },
   { id: 3, caption: "Project Three", placeholderClass: "bg-foreground/20" },
   { id: 4, caption: "Project Four", placeholderClass: "bg-foreground/25" },
@@ -63,10 +78,25 @@ export default function Gallery() {
 
             <div className="w-full max-w-3xl overflow-hidden rounded-2xl border border-border bg-foreground/[0.03]">
               <div
-                className={`aspect-[4/3] transition-colors ${currentSlide.placeholderClass}`}
-                role="img"
-                aria-label={currentSlide.caption}
-              />
+                className={`relative aspect-[4/3] transition-colors ${currentSlide.placeholderClass}`}
+              >
+                {"src" in currentSlide && currentSlide.src ? (
+                  <Image
+                    src={currentSlide.src}
+                    alt={currentSlide.alt ?? currentSlide.caption}
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 768px) 100vw, 768px"
+                    priority={currentIndex === 0}
+                  />
+                ) : (
+                  <div
+                    className="absolute inset-0"
+                    role="img"
+                    aria-label={currentSlide.caption}
+                  />
+                )}
+              </div>
             </div>
 
             <button

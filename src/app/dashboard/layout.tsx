@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import type { Metadata } from "next";
+import PwFooter from "@/components/pw/Footer";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -21,6 +22,7 @@ export default async function DashboardLayout({
   return (
     <main className="min-h-screen w-full bg-[#0a0a0a] text-white">
       {children}
+      <PwFooter />
     </main>
   );
 }

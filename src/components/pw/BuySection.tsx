@@ -1,7 +1,7 @@
 import Container from "@/components/Container";
 import BuyButton from "@/components/pw/BuyButton";
 import Arrow from "@/components/pw/Arrow";
-import { color2 } from "@/components/pw/colors";
+import { color3 } from "@/components/pw/colors";
 
 type PackageBox = {
   header: string;
@@ -43,18 +43,18 @@ function PackageCard({ box }: { box: PackageBox }) {
   return (
     <div
       className="flex h-full flex-col rounded-2xl border p-5 sm:p-6"
-      style={{ borderColor: color2, backgroundColor: `${color2}14` }}
+      style={{ borderColor: color3, backgroundColor: `${color3}14` }}
     >
       <h3 className="text-lg font-semibold text-white">{box.header}</h3>
       {box.value ? (
-        <p className="mt-1 text-sm font-medium" style={{ color: color2 }}>
+        <p className="mt-1 text-sm font-medium" style={{ color: color3 }}>
           Value: {box.value}
         </p>
       ) : null}
       <ul className="mt-4 flex-1 space-y-2 text-sm leading-relaxed text-white/75">
         {box.items.map((item) => (
           <li key={item} className="flex gap-2">
-            <span style={{ color: color2 }} aria-hidden>
+            <span style={{ color: color3 }} aria-hidden>
               ·
             </span>
             <span>{item}</span>
@@ -75,7 +75,7 @@ function FunnelArrow({ index }: { index: number }) {
       startY={2}
       endX={50}
       endY={68}
-      fromColor={color2}
+      fromColor={color3}
       bend={isMiddle ? 0 : 12}
       strokeWidth={3}
       endInset={14}
@@ -91,7 +91,7 @@ export default function BuySection() {
       <Container>
         <h2
           className="mb-10 text-center text-3xl font-bold tracking-tight sm:text-4xl"
-          style={{ color: color2 }}
+          style={{ color: color3 }}
         >
           Launch offer (<s>$1280</s> $900)
         </h2>
@@ -114,7 +114,7 @@ export default function BuySection() {
             startY={2}
             endX={16}
             endY={48}
-            fromColor={color2}
+            fromColor={color3}
             bend={8}
             strokeWidth={3}
             endInset={10}
@@ -125,12 +125,12 @@ export default function BuySection() {
 
         <div
           className="mx-auto mt-4 max-w-xl rounded-2xl border p-6 sm:p-8"
-          style={{ borderColor: color2, backgroundColor: `${color2}18` }}
+          style={{ borderColor: color3, backgroundColor: `${color3}18` }}
         >
           <h3 className="text-xl font-semibold text-white sm:text-2xl">
             Launch offer: Get everything for 900$.
           </h3>
-          <p className="mt-1 text-sm font-medium" style={{ color: color2 }}>
+          <p className="mt-1 text-sm font-medium" style={{ color: color3 }}>
             Value: $1280
           </p>
           <ul className="mt-4 space-y-2 text-sm leading-relaxed text-white/80 sm:text-base">
@@ -145,8 +145,8 @@ export default function BuySection() {
 
           <div className="mt-8 flex flex-col items-center gap-3">
             <BuyButton
-              color={color2}
-              label="Sign up and book a meeting now to lock in the price of $900"
+              color={color3}
+              label="Sign up now to lock in the price of $900"
               className="px-8 py-3 text-base"
             />
           </div>
