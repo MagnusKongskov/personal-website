@@ -30,12 +30,12 @@ export default function Demo1() {
     <div className="min-h-screen" style={{ backgroundColor: sand, color: navy }}>
       <header className="border-b px-6 py-6" style={{ borderColor: `${navy}18` }}>
         <p className="text-center text-sm font-semibold uppercase tracking-[0.2em]">
-          Riley Morgan
+          Marcus Hale
         </p>
       </header>
 
-      <section className="px-6 py-12 sm:py-16">
-        <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-2 lg:items-center">
+      <section className="px-6 pt-12 pb-10 sm:pt-16 sm:pb-12">
+        <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2 md:items-center md:gap-10">
           <div>
             <p
               className="text-xs font-semibold uppercase tracking-[0.25em]"
@@ -52,47 +52,51 @@ export default function Demo1() {
               I work with people who want structure without rigidity — coaching
               that fits your life and builds results you can keep.
             </p>
-
-            <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-4">
-              <div
-                className="col-span-2 rounded-sm p-6 sm:p-8"
-                style={{ backgroundColor: navy, color: sand }}
-              >
-                <p className="text-4xl font-medium sm:text-5xl">200+</p>
-                <p className="mt-2 text-sm uppercase tracking-widest opacity-70">
-                  Clients coached
-                </p>
-              </div>
-              <div
-                className="rounded-sm p-5"
-                style={{ backgroundColor: `${coral}18` }}
-              >
-                <p className="text-2xl font-medium">6 yrs</p>
-                <p className="mt-1 text-xs uppercase tracking-wider opacity-60">
-                  Experience
-                </p>
-              </div>
-              <div
-                className="rounded-sm p-5"
-                style={{ backgroundColor: `${navy}10` }}
-              >
-                <p className="text-2xl font-medium">NASM</p>
-                <p className="mt-1 text-xs uppercase tracking-wider opacity-60">
-                  Certified
-                </p>
-              </div>
-            </div>
           </div>
 
           <div className="relative aspect-[4/5] overflow-hidden rounded-sm">
             <Image
-              src="/demo1-riley.png"
-              alt="Riley Morgan, personal trainer"
+              src="/demo1-trainer.png"
+              alt="Marcus Hale, personal trainer"
               fill
               className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 480px"
+              sizes="(max-width: 768px) 100vw, 480px"
               priority
             />
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 pb-12 sm:pb-16">
+        <div className="mx-auto max-w-5xl">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4">
+            <div
+              className="col-span-2 rounded-sm p-6 sm:p-8"
+              style={{ backgroundColor: navy, color: sand }}
+            >
+              <p className="text-4xl font-medium sm:text-5xl">200+</p>
+              <p className="mt-2 text-sm uppercase tracking-widest opacity-70">
+                Clients coached
+              </p>
+            </div>
+            <div
+              className="rounded-sm p-5"
+              style={{ backgroundColor: `${coral}18` }}
+            >
+              <p className="text-2xl font-medium">6 yrs</p>
+              <p className="mt-1 text-xs uppercase tracking-wider opacity-60">
+                Experience
+              </p>
+            </div>
+            <div
+              className="rounded-sm p-5"
+              style={{ backgroundColor: `${navy}10` }}
+            >
+              <p className="text-2xl font-medium">NASM</p>
+              <p className="mt-1 text-xs uppercase tracking-wider opacity-60">
+                Certified
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -177,7 +181,7 @@ export default function Demo1() {
       </section>
 
       <footer className="px-6 py-8 text-center text-sm opacity-50">
-        riley@steadycoach.com · (303) 555-0198
+        marcus@steadycoach.com · (303) 555-0198
       </footer>
     </div>
   );

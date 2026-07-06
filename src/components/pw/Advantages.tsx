@@ -1,4 +1,5 @@
 import Container from "@/components/Container";
+import { color1 } from "@/components/pw/colors";
 
 const advantages = [
   "Have a good online presence.",
@@ -11,9 +12,13 @@ export default function Advantages() {
   return (
     <section className="py-6 sm:py-8">
       <Container>
-        <div className="rounded-2xl border border-white/15 bg-white/[0.04] p-6 sm:p-8">
+        <div
+          className="rounded-2xl border p-6 sm:p-8"
+          style={{ borderColor: color1, backgroundColor: `${color1}14` }}
+        >
           <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
-            Why should you get a personal webpage today?
+            Why should you get a{" "}
+            <span style={{ color: color1 }}>personal webpage</span> today?
           </h2>
 
           <ul className="mt-6 space-y-4">
@@ -22,8 +27,12 @@ export default function Advantages() {
                 key={item}
                 className="flex items-start gap-3 text-base leading-relaxed text-white/85 sm:text-lg"
               >
-                <span className="shrink-0" aria-hidden>
-                  ✅
+                <span
+                  className="mt-0.5 shrink-0 text-lg font-bold leading-none"
+                  style={{ color: color1 }}
+                  aria-hidden
+                >
+                  ✓
                 </span>
                 <span>{item}</span>
               </li>
