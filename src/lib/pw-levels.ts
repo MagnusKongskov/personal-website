@@ -26,7 +26,8 @@ export const SUBLEVEL_ORDER = [
   "1.1",
   "1.2",
   "1.3",
-  "1.3.5",
+  "1.3.1",
+  "1.3.2",
   "1.4",
   "2.1",
   "2.2",
@@ -75,7 +76,15 @@ export const PW_LEVEL_GROUPS: LevelGroupDefinition[] = [
         showOnMarketingPage: true,
       },
       {
-        id: "1.3.5",
+        id: "1.3.1",
+        timing: "After design call",
+        title: "Accept webpage agreement",
+        content:
+          "Accept the webpage agreement to get your webpage online.",
+        showOnMarketingPage: false,
+      },
+      {
+        id: "1.3.2",
         timing: "After design call",
         title: "Payment",
         content: "Complete your payment to lock in your package and move forward.",
@@ -171,6 +180,24 @@ export function getSublevelStatus(
 ): SublevelStatus {
   const userIndex = getUserLevelIndex(userLevel);
   const sublevelIndex = getSublevelIndex(sublevelId);
+
+  const usesExactLevelMatch =
+    sublevelId === "1.3" ||
+    sublevelId.startsWith("1.3.") ||
+    userLevel === "1.3" ||
+    userLevel.startsWith("1.3.");
+
+  if (usesExactLevelMatch) {
+    if (sublevelIndex < userIndex) {
+      return "completed";
+    }
+
+    if (sublevelIndex === userIndex) {
+      return "current";
+    }
+
+    return "locked";
+  }
 
   if (sublevelIndex <= userIndex) {
     return "completed";

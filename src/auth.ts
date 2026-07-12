@@ -8,6 +8,10 @@ import {
   buildMagicLinkHtml,
   buildMagicLinkText,
 } from "@/lib/emails/magic-link";
+import {
+  buildAdminMagicLinkHtml,
+  buildAdminMagicLinkText,
+} from "@/lib/emails/meeting";
 import { upsertUserFromAuth } from "@/lib/users";
 import { authConfig } from "@/auth.config";
 
@@ -33,12 +37,19 @@ if (process.env.RESEND_API_KEY) {
       from: resendFrom,
       async sendVerificationRequest({ identifier: to, provider, url }) {
         const resend = new ResendClient(provider.apiKey);
+        const isAdminLogin = url.includes("/admin");
         const { error } = await resend.emails.send({
           from: provider.from ?? resendFrom,
           to,
-          subject: "Sign in to your personal trainer dashboard",
-          html: buildMagicLinkHtml(url),
-          text: buildMagicLinkText(url),
+          subject: isAdminLogin
+            ? "Sign in to admin"
+            : "Sign in to your personal trainer dashboard",
+          html: isAdminLogin
+            ? buildAdminMagicLinkHtml(url)
+            : buildMagicLinkHtml(url),
+          text: isAdminLogin
+            ? buildAdminMagicLinkText(url)
+            : buildMagicLinkText(url),
         });
 
         if (error) {
@@ -74,6 +85,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       await upsertUserFromAuth({
         mail: user.email,
         name: user.name,
+        profilePicture: user.image,
       });
 
       return true;

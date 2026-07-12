@@ -50,12 +50,15 @@ async function handlePwCheckoutCompleted(session: Stripe.Checkout.Session) {
   await User.findOneAndUpdate(
     { mail: email.toLowerCase() },
     {
-      $set: successful ? { level: "1.3.5" } : {},
+      $set: successful
+        ? { level: "1.4", levelUpdatedAt: new Date() }
+        : {},
       $push: {
         transactions: {
           time: new Date(),
           amount,
           successful,
+          stripeSessionId: session.id,
         },
       },
     },
