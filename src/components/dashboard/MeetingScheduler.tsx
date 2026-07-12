@@ -342,6 +342,12 @@ export default function MeetingScheduler({
 
       closeModal();
       onOpenChange?.(false);
+
+      if (mode === "schedule") {
+        router.push("/ms");
+        return;
+      }
+
       router.refresh();
     });
   }
