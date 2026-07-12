@@ -6,12 +6,15 @@ import { isAdminEmail } from "@/lib/admin";
 import {
   sendAdminMeetingCancelledEmail,
   sendMeetingNoShowEmail,
+  sendMeetingReminderEmail,
   sendWebpageAgreementUploadedEmail,
 } from "@/lib/emails/send-meeting-email";
 import { formatMeetingTime, resolveUserTimeZone } from "@/lib/meeting-format";
 import {
   cancelMeeting,
   getDisplayName,
+  markReminderSent,
+  resolveMeetingJoinUrl,
 } from "@/lib/meetings";
 import { connectDB } from "@/lib/db";
 import { getUserByMail } from "@/lib/users";
@@ -200,5 +203,37 @@ export async function adminCancelMeetingAction(
 
   revalidatePath("/admin");
   revalidatePath("/dashboard");
+  return { success: true as const };
+}
+
+export async function sendMeetingReminderAction(email: string) {
+  const admin = await requireAdmin();
+  if (admin.error) {
+    return admin;
+  }
+
+  const meeting = await getMeetingUser(email);
+  if ("error" in meeting) {
+    return meeting;
+  }
+
+  const { user, name } = meeting;
+  const timeZone = resolveUserTimeZone(user.timezone);
+
+  try {
+    await sendMeetingReminderEmail({
+      to: email,
+      name,
+      meetingAt: user.scheduledMeetingAt!,
+      timeZone,
+      joinUrl: resolveMeetingJoinUrl(user),
+    });
+    await markReminderSent(email);
+  } catch (error) {
+    console.error("Failed to send meeting reminder email:", error);
+    return { error: "The reminder email could not be sent." };
+  }
+
+  revalidatePath("/admin");
   return { success: true as const };
 }

@@ -5,6 +5,7 @@ import {
   adminCancelMeetingAction,
   meetingNoShowAction,
   meetingNotInterestedAction,
+  sendMeetingReminderAction,
   sendWebpageAgreementAction,
 } from "@/app/admin/meeting-actions";
 import type { AdminScheduledMeeting } from "@/lib/admin-data";
@@ -80,6 +81,14 @@ export default function AdminMeetingActions({ meeting }: AdminMeetingActionsProp
           className="rounded-full border border-border px-4 py-2 text-xs font-medium transition-opacity hover:opacity-80 disabled:opacity-50"
         >
           Not interested
+        </button>
+        <button
+          type="button"
+          onClick={() => runAction(() => sendMeetingReminderAction(meeting.email))}
+          disabled={isPending}
+          className="rounded-full border border-border px-4 py-2 text-xs font-medium transition-opacity hover:opacity-80 disabled:opacity-50"
+        >
+          Send reminder
         </button>
         <button
           type="button"
