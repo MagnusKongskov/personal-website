@@ -4,6 +4,7 @@ import ScheduledMeetingInfo from "@/components/dashboard/ScheduledMeetingInfo";
 import WebpageAgreementButton from "@/components/dashboard/WebpageAgreementButton";
 import {
   PW_LEVEL_GROUPS,
+  getSublevelDisplay,
   getSublevelStatus,
   type SublevelDefinition,
   type SublevelStatus,
@@ -56,6 +57,7 @@ function SublevelCard({
   const showPayment = sublevel.id === "1.3.2" && userLevel === "1.3.2";
   const isActiveStep =
     status === "current" || showBookMeeting || showScheduledMeeting || showWebpageAgreement || showPayment;
+  const display = getSublevelDisplay(sublevel, userLevel);
 
   return (
     <div
@@ -83,9 +85,9 @@ function SublevelCard({
       <p className="text-sm font-medium" style={{ color }}>
         Level {sublevel.id}
       </p>
-      <h3 className="mt-2 text-lg font-semibold text-white">{sublevel.title}</h3>
+      <h3 className="mt-2 text-lg font-semibold text-white">{display.title}</h3>
       <p className="mt-2 text-sm leading-relaxed text-white/75 sm:text-base">
-        {sublevel.content}
+        {display.content}
       </p>
 
       {showBookMeeting ? (

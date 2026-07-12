@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { auth } from "@/auth";
 import Container from "@/components/Container";
+import DashboardAnalytics from "@/components/dashboard/DashboardAnalytics";
 import DashboardGreeting from "@/components/dashboard/DashboardGreeting";
 import DashboardLevels from "@/components/dashboard/DashboardLevels";
+import DashboardWebpage from "@/components/dashboard/DashboardWebpage";
 import ProfileAvatar from "@/components/dashboard/ProfileAvatar";
 import Contact from "@/components/pw/Contact";
 import { resolveMeetingJoinUrl } from "@/lib/meetings";
@@ -46,6 +48,11 @@ export default async function DashboardPage() {
             scheduledMeetingAt={scheduledMeetingAt}
             joinUrl={resolveMeetingJoinUrl(user)}
           />
+
+          <div className="mt-12 space-y-12">
+            <DashboardWebpage userLevel={userLevel} />
+            <DashboardAnalytics userLevel={userLevel} />
+          </div>
         </Container>
       </section>
 

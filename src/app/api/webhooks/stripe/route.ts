@@ -51,7 +51,7 @@ async function handlePwCheckoutCompleted(session: Stripe.Checkout.Session) {
     { mail: email.toLowerCase() },
     {
       $set: successful
-        ? { level: "1.4", levelUpdatedAt: new Date() }
+        ? { level: "1.3.9", levelUpdatedAt: new Date() }
         : {},
       $push: {
         transactions: {

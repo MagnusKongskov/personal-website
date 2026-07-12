@@ -28,6 +28,7 @@ export const SUBLEVEL_ORDER = [
   "1.3",
   "1.3.1",
   "1.3.2",
+  "1.3.9",
   "1.4",
   "2.1",
   "2.2",
@@ -174,6 +175,22 @@ export function getUserLevelIndex(level: string): number {
 
 export type SublevelStatus = "completed" | "current" | "locked";
 
+export const LEVEL_1_4_PENDING_DISPLAY = {
+  title: "Your website is being made",
+  content: "I will reach out to you when your webpage is ready to go online.",
+};
+
+export function getSublevelDisplay(
+  sublevel: SublevelDefinition,
+  userLevel: string,
+): Pick<SublevelDefinition, "title" | "content"> {
+  if (sublevel.id === "1.4" && userLevel === "1.3.9") {
+    return LEVEL_1_4_PENDING_DISPLAY;
+  }
+
+  return { title: sublevel.title, content: sublevel.content };
+}
+
 export function getSublevelStatus(
   userLevel: string,
   sublevelId: string,
@@ -186,6 +203,10 @@ export function getSublevelStatus(
     sublevelId.startsWith("1.3.") ||
     userLevel === "1.3" ||
     userLevel.startsWith("1.3.");
+
+  if (userLevel === "1.3.9" && sublevelId === "1.4") {
+    return "current";
+  }
 
   if (usesExactLevelMatch) {
     if (sublevelIndex < userIndex) {
