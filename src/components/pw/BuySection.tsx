@@ -34,6 +34,7 @@ const packages: PackageBox[] = [
     items: [
       "A hosted webpage",
       "Personalized domain",
+      "SSL certificate",
       "Support if changes to the webpage is needed.",
     ],
   },
@@ -90,11 +91,14 @@ export default function BuySection() {
     <section className="py-6 sm:py-8">
       <Container>
         <h2
-          className="mb-10 text-center text-3xl font-bold tracking-tight sm:text-4xl"
+          className="mb-2 text-center text-3xl font-bold tracking-tight sm:text-4xl"
           style={{ color: color3 }}
         >
           Launch offer (<s>$1280</s> $900)
         </h2>
+        <p className="mb-10 text-center text-sm text-white/75 sm:text-base">
+          Launch offer: Save 380$ when booking a meeting before June 19th.
+        </p>
 
         <div className="grid gap-6 lg:grid-cols-3">
           {packages.map((box) => (
@@ -146,9 +150,12 @@ export default function BuySection() {
           <div className="mt-8 flex flex-col items-center gap-3">
             <BuyButton
               color={color3}
-              label="Sign up now to lock in the price of $900"
+              label="Sign up and book a design call now"
               className="px-8 py-3 text-base"
             />
+            <p className="text-center text-sm text-white/70">
+              Meetings before June 19th are subject to a 380$ discount.
+            </p>
           </div>
         </div>
       </Container>

@@ -71,7 +71,7 @@ export const PW_LEVEL_GROUPS: LevelGroupDefinition[] = [
         timing: "2-3 days away",
         title: "Design call",
         content:
-          "30 minute call where we discuss the design of your website.",
+          "30 minute call where we discuss the design and features of your website.",
         anchor: 48,
         shift: 16,
         showOnMarketingPage: true,
